@@ -47,14 +47,19 @@ function Articles() {
                             </div>
                             <div className='card-infos-container'>
                                 <span className='tags'>{post.tags.join(' | ')}</span>
-                                <span className='reactions'>{ post.reactions }</span>
+                                <div className='likes'>
+                                    <img src='like.png' alt='likes' />
+                                    <span className='reactions'>{ post.reactions }</span>
+                                </div>
                             </div>
                         </div>
                     )
                     :''}
             </div>
             {total?
-                <Pagination page={ page } total={ total }/>
+                <div className='paginate'>
+                    <Pagination page={ page } total={ total }/>
+                </div>
             :''}
         </>
     );

@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import { Routes, Route, Navigate, Link } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Articles from './Components/Articles';
 
@@ -15,10 +14,10 @@ function Home() {
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="articles" element={<Articles />} />
+        <Route exact path='/' element={<Home />} />
+        <Route path='articles' element={<Articles />} />
       </Routes>
     </div>
   );
