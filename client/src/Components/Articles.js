@@ -1,12 +1,17 @@
-import {React, useEffect} from 'react';
-
-import {useLocation, useSearchParams} from 'react-router-dom';
+import {React, useEffect, useState} from 'react';
+import { useSearchParams} from 'react-router-dom';
 import axios from 'axios';
+
+import FindUser from './FindUser';
+import Pagination from './Pagination';
 
 function Articles() {
     // Recuperation du parametre dans l'URL
     const [searchParams] = useSearchParams();
     const page = searchParams.get("page");
+
+    const [posts, setPosts] = useState([]);
+    const [total, setTotal] = useState(null);
 
     let skip = null;
 
@@ -20,17 +25,38 @@ function Articles() {
     useEffect(() => {
         axios.get(`https://dummyjson.com/posts?skip=${skip}&limit=10`)
         .then(res => {
-            console.log(res.data.posts);
-        }) 
-        .catch(err => {
-            console.log(err);
-        })
+            setPosts(res.data.posts);
+            setTotal(res.data.total)
+        }).catch(err => console.log(err))
     }, [])
 
     return (
-        <div>
-            <h1>Articles</h1>
-        </div>
+        <>
+            <div className='posts-container'>
+                {posts.length > 0 ?
+                    posts.map((post) => 
+                        <div className='card' key={post.id}>
+                            <div className='user-container'>
+                                <FindUser id={ post.userId } />
+                            </div>
+                            <div className='card-title'>
+                                <h4>{ post.title }</h4>
+                            </div>
+                            <div className='card-content'>
+                                <p>{ post.body }</p>
+                            </div>
+                            <div className='card-infos-container'>
+                                <span className='tags'>{post.tags.join(' | ')}</span>
+                                <span className='reactions'>{ post.reactions }</span>
+                            </div>
+                        </div>
+                    )
+                    :''}
+            </div>
+            {total?
+                <Pagination page={ page } total={ total }/>
+            :''}
+        </>
     );
 }
 

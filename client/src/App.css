@@ -2,37 +2,74 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.posts-container {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 23% 23% 23% 23%;
+  width: 95%;
+  justify-content: space-evenly;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card {
+  margin: 35px 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.user-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
+}
+
+.user-pic-container {
+  width: 90px;
+  border: 2px solid black;
+  border-radius: 50%;
+  padding: 0px;
+  overflow: hidden;
+  background: #d2d7e7;
+} 
+
+.user-pic-container img {
+  width: 100%;
+}
+
+span.user-name {
+  font-size: 1.09rem;
+  font-weight: 500;
+}
+
+.card-infos-container {
+  height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Pagination */
+
+.pagination-container {
+  width: 45%;
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+span.pagination-link {
+  height: 23px;
+  width: 23px;
+  padding: 2px;
+  border: 2px solid black;
+}
+
+a {
+  color: unset;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+span.pagination-link.current {
+  background: red;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
